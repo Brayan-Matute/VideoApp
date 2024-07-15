@@ -1,0 +1,29 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             mc:Ignorable="d"
+             x:Class="VideoApp.VideosPage"
+             Title="Lista Videos">
+
+    <CollectionView x:Name="videosCollectionView"
+                    ItemsSource="{Binding Videos}"
+                    SelectionMode="None"
+                    BackgroundColor="Grey">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <StackLayout Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White">
+                    <Label Text="{Binding Nombre}" HorizontalOptions="Center" FontSize="Small" TextColor="Black"/>
+                    <toolkit:MediaElement Source="{Binding Ruta}" 
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand"
+                                        HeightRequest="250"
+                                        WidthRequest="400" />
+                    <Button Text="Eliminar" Command="{Binding BindingContext.EliminarVideoCommand, Source={x:Reference videosCollectionView}}" CommandParameter="{Binding .}" HorizontalOptions="FillAndExpand" BackgroundColor="Red"/>
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+</ContentPage>
